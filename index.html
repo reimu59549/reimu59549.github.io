@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>霊夢のブログ</title>
+<style>
+html {
+scroll-behavior: smooth;
+}
+
+body {
+background-color: #fff;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+
+
+.col-sm-6 {
+position: relative;
+display: inline-block;
+width: 20%;
+height: 300px;
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+} 
+
+ol[itemscope] {
+list-style: none;
+position: relative;
+display: inline-block;
+}
+
+.card__imgframe{
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 800px){
+ .col-sm-6 {
+ width: 100vw;
+ }
+ #pagetitle {
+ display: block;
+ }
+ .pcnav {
+ display: none;
+ }
+ #sppt {
+ display: block;
+ }
+}
+
+.lnkpg li {
+list-style: none;
+position: relative;
+display: inline-block;
+top: 0;
+}
+
+input[type="text"], input[type="number"] {
+position: relative;
+border-radius: 15px;
+height: 40px;
+}
+
+.pcnav {
+position: relative;
+top: 0;
+left: 0;
+background-color: #000;
+color: #fff;
+margin: 0;
+padding: 0;
+}
+
+.pagetop {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: #fff;
+    border: solid 2px #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.pagetop__arrow {
+    height: 10px;
+    width: 10px;
+    border-top: 3px solid #000;
+    border-right: 3px solid #000;
+    transform: translateY(20%) rotate(-45deg);
+}
+
+/* hamburger */
+.checkbox {
+  display: none;
+}
+
+.button {
+  position: relative;
+  background-color: white;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  position: fixed;
+  top: 1vh; 
+  right: 1vw; 
+  z-index: 2000;
+  box-shadow: 0 1rem 3rem black;
+  text-align: center; 
+  cursor: pointer;
+}
+
+.background {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  position: fixed;
+  top: 1vh; 
+  right: 1vw; 
+  background-image: radial-gradient(#00FFBC, #FFDC00);
+  z-index: 1000;
+
+  transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.nav {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: -60vw;
+  z-index: 1500;
+  opacity: 0;
+  width: 0;
+  transition: all 0.8s;
+}
+
+.list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+  text-align: center;
+  width: 100%;
+}
+
+.item {
+  margin: 1rem;
+  font-size: 36px;
+}
+
+.link:link,
+.link:visited {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 300;
+  padding: 1rem 2rem;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 50%,
+    white 50%
+  );
+  background-size: 220%;
+  transition: all 0.4s;
+}
+
+.link:hover,
+.link:active {
+  color: lightgreen;
+  cursor: pointer;
+}
+
+/* functionality */
+.checkbox:checked ~ .background {
+  transform: scale(80);
+}
+.checkbox:checked ~ .nav {
+  opacity: 1;
+  width: 100%;
+  right: 0;
+}
+
+/*  */
+/* styling hamb ICON */
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon,
+.icon::before,
+.icon::after {
+  width: 3rem;
+  height: 2px;
+  background-color: gray;
+  display: inline-block;
+}
+
+.icon::before,
+.icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  transition: all 0.2s;
+}
+
+.icon::before {
+  top: -0.8rem;
+}
+.icon::after {
+  top: 0.8rem;
+}
+
+.button:hover icon:before {
+  top: -1rem;
+}
+.button:hover icon::after {
+  top: 1rem;
+}
+
+.checkbox:checked + .button .icon {
+  background-color: transparent;
+}
+
+.checkbox:checked + .button .icon::before {
+  top: 0;
+  transform: rotate(135deg);
+}
+.checkbox:checked + .button .icon::after {
+  top: 0;
+  transform: rotate(-135deg);
+}
+
+@media screen and (min-width: 810px) {
+ #sppt {
+ display: none;
+ }
+}
+
+@media (prefers-color-scheme: dark) {
+ body {
+ background-color: #081000;
+ color: #fff;
+ }
+ .button {
+ background-color: #9ADCBD;
+ }
+ .background {
+ background-image: radial-gradient(#00834E, #005969);
+ }
+}
+</style>
+</head>
+<body>
+<h1 id="sppt">霊夢のブログ</h1>
+ <input type="checkbox" id="navi-toggle" class="checkbox" />
+  <label for="navi-toggle" class="button">
+    <span class="icon">&nbsp;</span>
+  </label>
+  <div class="background">&nbsp;</div>
+
+  <!-- nav -->
+  <nav class="nav">
+    <ul class="list">
+      <li class="item"> <a class="link"> Link 1 </a> </li>
+      <li class="item"> <a class="link"> Link 2 </a> </li>
+      <li class="item"> <a class="link"> Link 4 </a> </li>
+      <li class="item"> <a class="link"> Link 5 </a> </li>
+      <li class="item"> <a class="link"> Link 6 </a> </li>
+    </ul>
+  </nav>
+<nav class="pcnav">
+   <div class="pgs">
+      <ul class="lnkpg">
+        <li>
+        <h1 id="pagetitle">霊夢のブログ</h1>
+        </li>
+        <li>
+          <a class="nav-link active btn-primary" aria-current="page" href="http://reimu59549.starfree.jp/">ホーム</a>
+        </li>
+        <li>
+          <a class="nav-link" href="http://reimu59549.starfree.jp/sns.html">SNS</a>
+        </li>
+        <li>
+           <a class="nav-link" href="http://reimu59549.starfree.jp/projects.html">プロジェクト</a>
+        </li>
+        <li>
+        <form>
+        <input type="text" class="form-control" placeholder="検索する" aria-label="検索する" aria-describedby="basic-addon1" name="q">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon1">検索</button>
+        </form>
+        </li>
+    </div>
+</nav>
+<ol itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem" class="breadcrumb-item active" aria-current="page">
+    <a itemprop="item" href="http://reimu59549.starfree.jp/">
+        <span itemprop="name">ホーム</span>
+    </a>
+    <meta itemprop="position" content="1" />
+  </li>
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem" class="breadcrumb-item active" aria-current="page">
+    <a itemprop="item" href="http://reimu59549.starfree.jp/">
+        <span itemprop="name">ページ1</span>
+    </a>
+    <meta itemprop="position" content="2" />
+  </li>
+</ol>
+<div class="card-group">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card__textbox">
+        <img src="http://reimu59549.starfree.jp/contents/articlethumb1.jpeg" class="card__imgframe">
+        <h5 class="card__titletext">ScratchのブロックをHTMLで描画する方法</h5>
+        <p class="card__overviewtext">ScratchのWeb解説に便利</p>
+        <a href="/articles/52162.html" class="btn btn-primary">もっと見る</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card__textbox">
+        <img src="http://reimu59549.starfree.jp/contents/articlethumb2.jpeg" class="card__imgframe">
+        <h5 class="card__titletext">HTMLでソースコードをそのまま表示する方法</h5>
+        <p class="card__overviewtext">HTMLのWeb解説に便利</p>
+        <a href="/articles/19194.html" class="btn btn-primary">もっと見る</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card__textbox">
+        <img src="https://webty.jp/staffblog/wp-content/uploads/2018/05/thumbnail_js.jpg" class="card__imgframe">
+        <h5 class="card__titletext">&lbrack;JavaScript入門&rbrack;要素の取得</h5>
+        <p class="card__overviewtext">はじめてのJavaScript</p>
+        <a href="/articles/94614.html" class="btn btn-primary">もっと見る</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card__textbox">
+        <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/s/sts-250rr/20200329/20200329202258.png" class="card__imgframe">
+        <h5 class="card__titletext">ブラウザだけで使えるLinuxを構築してみた</h5>
+        <p class="card__overviewtext">スマホでもOK</p>
+        <a href="/articles/31548.html" class="btn btn-primary">もっと見る</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card__textbox">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqWsGwk73no1NI6YX9H8uLIKU4M8-7T4zp14gNpM8D1SbfJb_5V1jti34bhesxG5UbYpEY5LuqfHDpU72fuFXpOpe52kD_yV3uNxs6Yrbgm-PMOEB7h8VAn5Ml2etBtLxA8P6pAi9dgG8/w1200-h630-p-k-no-nu/thumbnail_clock.jpg" class="card__imgframe">
+        <h5 class="card__titletext">HTMLとCSSとJavaScriptで時計を作る</h5>
+        <p class="card__overviewtext">簡単だしシンプル</p>
+        <a href="/articles/75641.html" class="btn btn-primary">もっと見る</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card__textbox">
+        <img src="https://thumb.ac-illust.com/36/3663f5a9e9abb3ff9443b9176a4373d0_t.jpeg" class="card__imgframe">
+        <h5 class="card__titletext">JavaScriptでクリックゲームを作る</h5>
+        <p class="card__overviewtext">面白いゲームのプログラミング</p>
+        <a href="/articles/46459.html" class="btn btn-primary">もっと見る</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card__textbox">
+        <img src="https://iphone-mania.jp/uploads/2022/12/10/GoogleChrome-icon.jpg" class="card__imgframe">
+        <h5 class="card__titletext">GoogleChromeに複数の脆弱性、今直ぐ128にアプデを</h5>
+        <p class="card__overviewtext">GoogleChromeの人必見</p>
+        <a href="/articles/61019.html" class="btn btn-primary">もっと見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+<a href="http://reimu59549.starfree.jp/prv.html" style="position: relative; text-align: center;">プライバシーポリシー</a>
+	<div class="container text-center">
+	  <p class="text-muted" style="position: relative; text-align: center;">&copy; 2024 博麗霊夢ちゃんねる</p>
+	</div>
+</footer>
+<a class="pagetop" href="#"><div class="pagetop__arrow"></div></a>
+<!-- Required Material Web JavaScript library -->
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
+</body>
+</html>
